@@ -1,0 +1,73 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{kontextsensitive Grammatiken}
+\begin{itemize}
+\item Einschränkung der Produktionen
+\begin{itemize}
+\item $u\to v$ mit $u\in V^+, v\in \left((V\cup T)\setminus \{S\}\right)^+$, $|u|\leq|v|$
+\item oder $S\to\lambda$
+\end{itemize} \pause
+\item Äquivalent (siehe VL):
+\begin{itemize}
+\item $S\to\lambda$, $A\to a$ mit $A\in V$, $a\in\Sigma$
+\item $\alpha A\beta\to\alpha\gamma\beta$ mit $A\in V,\quad \alpha,\beta,\gamma\in V^*,\quad \gamma\neq\lambda$
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{linear beschränkte TM}
+\begin{itemize}
+\item arbeitet nur auf Platz, der von Eingabe belegt ist
+\item eventuell noch auf dem einen Platz rechts davon
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Äquivalenzen}
+\begin{itemize}
+\item kontextsensitive Grammatiken $\Leftrightarrow$ \\(nicht-deterministische) linear beschränkte Turingmaschinen
+\item Chomsky 0 $\Leftrightarrow$ Turingmaschinen
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Chomsky-Hierarchie}
+\begin{itemize}
+\item[] Chomsky 0 (TM)
+\item[$\supsetneq$] entscheidbare Sprachen
+\item[$\supsetneq$] Chomsky 1 (kontextsensitiv)
+\item[$\supsetneq$] Chomsky 2 (kontextfrei)
+\item[$\supsetneq$] Chomsky 3 (regulär)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Universelle TM}
+\begin{itemize}
+\item jede Turingmaschine lässt sich codieren als Wort aus $\{0,1\}^*$ (Gödelnummer)
+\vspace{1cm}\pause
+\item $\exists$ Universelle TM T
+\begin{itemize}
+\item mit $\Sigma_T=\{0,1\}$ und $\Gamma_T=\Sigma\cup\{\square\}$
+\item Eingabe: Gödelnummer von einer TM $M$, Wort $w\in\Sigma_M^*$
+\item $T$ simuliert $M$ auf $w$
+\end{itemize}
+\end{itemize}
+\end{frame}
+\end{document}

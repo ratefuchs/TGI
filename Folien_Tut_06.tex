@@ -1,0 +1,87 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\Sigma^*}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergänzung zur Gödelnummer}
+\begin{itemize}
+\item für TM $M$ bezeichnet $\langle M\rangle$ die Gödelnummer von $M$
+\item für $w\in\{0,1\}^*$ ist $M_w$ die TM mit Gödelnummer $w$ \pause
+\item für nicht korrekte Gödelnummer $w$ ist $L(M_w)=\emptyset$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Semi-)Entscheidbarkeit}
+Sei $L\subset\F$ eine Sprache.
+\begin{itemize}
+\item $L\in R$ ($L$ ist entscheidbar) $:\Leftrightarrow$ es existiert eine TM $M$, die $L$ entscheidet (d.h. $M$ hält immer) \pause
+\item $L\in RE$ ($L$ ist semientscheidbar) $:\Leftrightarrow$ es existiert eine TM $M$, die $L$ akzeptiert (d.h. für $w\notin L$ muss $M$ nicht notwendigerweise halten)
+\item $L\in co-RE :\Leftrightarrow \bar{L} := \F\setminus L\in RE$
+\item $R=RE\cap co-RE$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Nicht entscheidbare Sprachen / Probleme}
+\begin{itemize}
+\item Diagonalsprache $L_D:=\{w\in\F | M_w \text{ akzeptiert } w \text{ nicht}\}$
+\item Wortproblem $A_{TM}:=\{\langle M\rangle w\in\F | M \text{ akzeptiert } w\}$
+\item Halteproblem $HALT:=\{\langle M\rangle w\in\F | M \text{ hält bei Eingabe } w\}$
+\item $MIN_{TM} := \{\langle M\rangle | M$ ist minimale TM$\}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Berechenbarkeit, Many-One-Reduzierbarkeit}
+\begin{itemize}
+\item $f:\F\to\F$ heißt berechenbar, wenn eine TM $M$ exisiert, die bei Eingabe $w$ mit $f(w)$ auf dem Band hält.
+\item $A\leq_m B$ ($A$ Many-One-reduzierbar auf $B$), wenn eine berechenbare Funktion $f:\F\to\F$ existiert mit $w\in A\Leftrightarrow f(w)\in B$
+\end{itemize}
+Sei $A\leq_m B$. Dann:
+\begin{itemize}
+\item $B$ entscheidbar $\Rightarrow$ $A$ entscheidbar.
+\item $A$ nicht entscheidbar $\Rightarrow$ $B$ nicht entscheidbar
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Postsches Korrespondenzproblem}
+Gegeben: eine endliche Menge von "Puzzlestücken"
+$$S=\left\lbrace\begin{pmatrix}t_1\\b_1\end{pmatrix}, \ldots,\begin{pmatrix}t_n\\b_n\end{pmatrix}\right\rbrace$$ 
+mit $t_1, \ldots, t_n, b_1, \ldots, b_n\in\F$.\\
+Frage: Existieren $i_1, \ldots, i_k$ mit $b_{i_1}\ldots b_{i_k}=t_{i_1}\ldots t_{i_k}$?
+\end{frame}
+
+\begin{frame}
+\frametitle{Quines}
+\begin{itemize}
+\item Sei $P_w$ die TM, die w ausgibt und hält.
+\item Es gibt eine berechenbare Funktion $q:\F\to\F$ mit $q(w)=\langle P_w\rangle$\pause
+\item Es existiert eine TM, die ihre eigene Gödelnummer ausgibt
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Das Rekursionstheorem}
+\begin{itemize}
+\item 1. Form: Die TM $T$ berechne die Funktion $t:\F\times\F\to\F$. Dann existiert eine TM $R$, die die Funktion $r:\F\to\F$ mit $r(w)=t(\langle R\rangle, w)$ berechnet.\pause
+\item 2. Form: Es sei $t:\F\to\F$ berechenbar. Dann existiert eine TM $F$, so dass $M_{t(\langle F\rangle)}$ die gleiche Funktion berechnet wie $F$. 
+\end{itemize}
+\end{frame}
+\end{document}

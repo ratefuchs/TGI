@@ -1,0 +1,113 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\Sigma^*}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+\renewcommand{\P}{\ensuremath \mathcal{P}}
+\newcommand{\NP}{\ensuremath \mathcal{NP}}
+\newcommand{\NPC}{\ensuremath \mathcal{NP-C}}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Zum Übungsblatt}
+\begin{itemize}
+\item Beim PKP ist eine leere Puzzlestückfolge KEINE gültige Lösung
+\item Turingreduktion noch mal anschauen!
+\item Wenn ihr Entscheidbarkeit bewiesen habt, folgt daraus automatisch Semientscheidbarkeit
+\item $K(x)$: immer hinschreiben, dass $c$ konstante Größe der TM ist
+\item Th$(\N,+)$: eigentlich nur Gleichungen der Form $x+y=z$ erlaubt
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{$\NP$-Vollständigkeit}
+\end{frame}
+
+\begin{frame}
+\frametitle{polynomielle many-one-Reduktion}
+\begin{itemize}
+\item Sei $f$ in polynomieller Zeit berechenbare Funktion und $A$ und $B$ Sprachen
+\item Sei $\forall w\in\F: w\in A\Leftrightarrow f(w)\in B$
+\item Dann ist $A$ polynomiell many-one-reduzierbar auf $B$ ($A\leq_p B$)\pause
+\item $A\leq_p B$ und $B\in\P$ $\Rightarrow$ $A\in\P$
+\item poly many-one-Reduzierbarkeit ist transitiv\pause
+\item poly many-one-reduzierbar ist nicht dasselbe wie poly turingreduzierbar
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{$\NP$-Schwere und -Vollständigkeit}
+\begin{itemize}
+\item $A$ ist $\NP$-schwer, falls $\forall B\in\NP: B\leq_p A$\pause
+\item $A$ ist $NP$-vollständig ($A\in\NPC$), falls $A\in\NP$ und $A$ $\NP$-schwer ist\pause
+\item $B\in\NPC$, $A\in\NP$, $B\leq_p A$ $\Rightarrow$ $A\in\NPC$\pause
+\item falls $\P\cap\NPC\neq\emptyset$, ist $\P=\NP$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{SAT (Erfüllbarkeit)}
+\begin{itemize}
+\item SAT $:=\{\text{boolsche Formel } b|$\\$\text{es existiert eine Variablenbelegung, so dass $b$ wahr wird}\}$ (Version 1)
+\item meist eingeschränkt auf konjunktive Form: z.B.\\ $b=(\underbrace{x_1}_\text{Literal}\vee x_3\vee\underbrace{\bar{x}_4}_\text{Literal}\vee x_5)\wedge\underbrace{(\bar{x}_1\vee x_2)}_\text{Klausel}\wedge (x_4)$\\ $x_1,\ldots, x_n$ nennt man Variablen\pause
+\item Satz von Cook: $SAT\in\NPC$\pause
+\item Erfüllbarkeit von disjunktiven Formen ist aber in $\P$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{weitere wichtige $\NP$-vollständigen Probleme}
+\begin{itemize}
+\item siehe Tutblatt
+\item siehe Übungsblätter
+\item siehe Vorlesungsfolien und Skript von Wagner (http://i11www.iti.uni-karlsruhe.de/teaching/winter2011/tgi/index) \\{} [für diese VL natürlich inoffiziell...]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Zero-Knowledge-Beweise}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ziel von ZK-Beweisen}
+Einen anderen überzeugen, eine Lösung zu kennen, ohne
+\begin{itemize}
+\item diese zu verraten
+\item dass andere von einer Mitschrift des "Gesagten" überzeugt werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wie kann so etwas gehen?}
+\begin{itemize}
+\item mithilfe von Zufall: falsche Lösungen werden "ziemlich sicher" erkannt\pause
+\item verwende eine Art "Zeuge", der aber nur teilweise abgefragt wird\pause
+\item zuerst wählt der Beweiser den "Zeugen", dann sagt der Prüfer, welchen Teil er wissen will\pause
+\item Wiederholung des obigen Schritts bis die Fehlerwahrscheinlichkeit "gering genug"\pause
+\item wichtig dabei: falls der Beweiser wüsste, welchen Teil der Prüfer sehen will, würde er den Zeugen entsprechend "fälschen" können (sieht daher für außenstehende wie Absprache aus)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{ZK-Beweise und $\NP$}
+\begin{itemize}
+\item 3-COLOR $\in\NPC$
+\item 3-COLOR lässt sich ZK-beweisen
+\item alle Probleme aus $\NP$ lassen sich ZK-beweisen
+\end{itemize}
+\end{frame}
+\end{document}

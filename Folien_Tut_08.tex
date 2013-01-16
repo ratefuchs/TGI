@@ -1,0 +1,140 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\Sigma^*}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+\renewcommand{\P}{\ensuremath \mathcal{P}}
+\newcommand{\NP}{\ensuremath \mathcal{NP}}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Organisatorisches}
+\begin{itemize}
+\item Literaturempfehlung: Michael Sipser, Introduction to the Theory of Computation; in der KIT-Bibliothek Süd im Bereich 1.0, in der Informatik-Bibliothek im Bereich D.Sip.
+\item Tutorium am 21.12.2012 findet normal statt
+\item Eulenfest: Mittwoch, 19.12.2012 ab 20:30 beim Infobau
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optimalität der Kolmogorov-Komplexität}
+\begin{itemize}
+\item Sei $p$ eine Beschreibungssprache und $K_p$ die zugehörige Beschreibungskomplexität.
+\item Dann existiert ein $c$ mit $K(w) \leq K_p(w) + c \quad (w\in\{0,1\}^*)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{nichtkomprimierbare Strings}
+\begin{itemize}
+\item Für alle $n\in\N_0$ gibt es nichtkomprimierbare Strings der Länge $n$.\pause
+\item Fast alle Strings sind nichtkomprimierbar
+\item Zufällige Strings sind mit hoher Wahrscheinlichkeit nichtkomprimierbar\pause
+\item Erinnerung: Die Menge der nichtkomprimierbaren Strings ist nicht rekursiv aufzählbar
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Komplexitätstheorie}
+\end{frame}
+
+\begin{frame}
+\frametitle{Laufzeit von TM}
+\begin{itemize}
+\item Die TM $M$ halte für alle Eingaben.
+\item $f(n):=\max\limits_{|w|=n} (\text{Anzahl der Berechnungsschritte von $M$ bei Eingabe $w$})$ nennt man Laufzeit der TM $M$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die O-Notation}
+Seien $f,g:\N\to\R^+$. Wir schreiben
+\begin{itemize}
+\item $f\in O(g(n))$ wenn $\exists c,n_0\in\N \forall n\geq n_0: f(n)\leq c\cdot g(n)$\pause
+\item $f\in o(g(n))$ wenn $\forall c\in\R^+ \exists n_0\in\N_0 \forall n\geq n_0: f(n)< c\cdot g(n)$
+\item Andere Formulierung: $f\in o(g(n))$ wenn $\lim\limits_{n\to\infty}\frac{f(n)}{g(n)}=0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Das Speed-Up-Theorem}
+\begin{itemize}
+\item Zu jeder TM gibt es eine sprachäquivalente TM, die um einen konstanten Faktor schneller ist.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Komplexitätsklassen}
+\begin{itemize}
+\item Für $t:\N\to\N$ ist $TIME(t(n)):=\{L|L\text{ ist entscheidbar durch eine TM, die bei Eingabelänge $n$} \newline \text{ $O(t(n))$ Schritte benötigt.}\}$
+\item Für eine Mehrband-TM $M$ mit Laufzeit $O(t(n))$ ist $L(M)\in TIME(O(t^2(n)))$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Laufzeit einer NTM}
+\begin{itemize}
+\item Sei $M$ nichtdeterministische TM, die immer hält und $P(w)$ die Menge der Berechnungspfade bei Eingabe $w$.
+\item $f(n):=\max\limits_{|w|=n}\text{ } \min\limits_{p \in P(w)}(\text{Länge von $p$})$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Verifizierer}
+\begin{itemize}
+\item Ein Verifizierer für eine Sprache $A$ ist ein Algorithmus V mit $A=\{w|\exists c\in\F : V\text{ akzeptiert } (w,c)\}$
+\item Wenn die Laufzeit von $V$ polynomial in $|w|$: $A$ ist polynomial verifizierbar
+\item $c$ nennt man Zeuge.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Klasse $\P$}
+\begin{itemize}
+\item $\P:=\bigcup\limits_{k\in\N} TIME(n^k)$
+\item effizient lösbare Sprachen
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Klasse $\NP$}
+\begin{itemize}
+\item $\NP$: polynomiell verifizierbare Sprachen\pause
+\item $NTIME(t(n)):=\{L|L\text{ wird von einer NTM in Zeit $O(t(n))$ akzeptiert}\}$
+\item $\NP=\bigcup\limits_{k\in\N} NTIME(n^k)$\pause
+\item $\P\subseteq\NP$
+\item Großes Problem der theoretischen Informatik: Ist $\P=\NP$? (Vermutung: nein!)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Probleme in $\P$ bzw. $\NP$}
+In $\P$:
+\begin{itemize}
+\item PATH
+\item RELPRIME
+\item EULER-KREIS
+\item COMPOSITE
+\end{itemize}
+In $\NP$ (aber vermutlich nicht in $\P$):
+\begin{itemize}
+\item HAMILTON-KREIS
+\item CLIQUE
+\item SUBSET-SUM
+\end{itemize}
+\end{frame}
+\end{document}

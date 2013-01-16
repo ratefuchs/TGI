@@ -1,0 +1,89 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\Sigma^*}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Zum Übungsblatt}
+\begin{itemize}
+\item beim "Simulieren" alle Konfigurationen angeben, außer es steht explizit was anderes da
+\item Zwischenschritte beim Umformen in Chomsky-NF machen es dem Tutor einfacher
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gödels Unvollständigkeitssatz}
+\begin{itemize}
+\item Jedes "hinreichend mächtige" formale System ist entweder widersprüchlich oder unvollständig.\pause
+\item Bsp. für hinreichend mächtig: $\N$ mit $+$ und $*$ (Th$(\N,+,*)$)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Nicht-)Entscheidbarkeit von wichtigen Theorien}
+\begin{itemize}
+\item Th$(\N,+)$ ist entscheidbar.\pause
+\vspace{1cm}
+\item Th$(\N,+,*)$ ist unentscheidbar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Was ist ein Beweis?}
+\begin{itemize}
+\item Ein Beweis ist (maschinen-)überprüfbar.
+\item Alle beweisbaren Aussagen sind wahr ("Soundness").\pause
+\item Die Menge der beweisbaren Aussagen in Th$(\N,+,*)$ ist rekursiv aufzählbar.
+\item[$\Rightarrow$] Es existieren nicht beweisbare Aussagen in Th$(\N,+,*)$.\pause
+\item Für jedes Kalkül (mit "Soundness" und Turingentscheidbarkeit der Gültigkeit von Ableitungen) gibt es eine Aussage, die im Kalkül nicht beweisbar ist.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Turingreduzierbarkeit}
+\begin{itemize}
+\item Ein Orakel für eine Sprache L ist ein "externes Gerät", das als Hilfe für eine TM entscheidet, ob ein Wort $w\in L$ ist.
+\item $TM^O:=$ Turingmaschine mit Zugriff auf Orakel $O$.\pause
+\item $A \leq_T B :=$ es existiert eine Orakel-TM $TM^O$, die $A$ entscheidet, wobei $O$ Orakel für $B$ (Turingreduzierbarkeit).\pause
+\item $A \leq_T B$ und $B$ entscheidbar $\Rightarrow A$ entscheidbar
+\item Halteproblem für TM mit Orakel $O$ nicht durch Turingmaschinen mit Orakel $O$ entscheidbar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{ein kleiner Versuch...}
+\only<2>{374986932084149032749124709129269196895327\\
+8741974981629846071486258321418884}
+\only<4>{012345678910111213141516171819202122232425\\
+2627282930313233343536373839404142}
+\only<5>{}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kolmogorow-Komplexität}
+\begin{itemize}
+\item stelle Wort $w$ durch $\langle M\rangle 01w^\prime$ dar, wobei
+\begin{itemize}
+\item $01$ ist "Trennzeichen"
+\item $M$ bei Eingabe $w^\prime$ hält und $w$ aufs Band schreibt
+\end{itemize}\pause
+\item $K(w)$ ist die Länge der kürzesten Codierung für $w\in\{0,1\}^*$ nach obiger Form (Kolmogorow-Komplexität)
+\end{itemize}
+\end{frame}
+\end{document}
