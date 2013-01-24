@@ -1,0 +1,114 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\Sigma^*}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+\newcommand{\E}{\ensuremath \mathbb{E}}
+\renewcommand{\P}{\ensuremath \mathcal{P}}
+\newcommand{\NP}{\ensuremath \mathcal{NP}}
+\newcommand{\NPC}{\ensuremath \mathcal{NP-C}}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Organisatorisches}
+\begin{itemize}
+\item Abgabe ÜB 6 am Mo., 28.01
+\item Veröffentlichung ÜB 7 schon am Mo., 28.01
+\item Abgabe von ÜB 7 schon Fr., 01.02.
+\item Blatt 7: Nur 2 Aufgaben werden gewertet
+\item Zusätzlich Wiederholungsaufgaben: werden nicht gewertet. Ich werde diese Aufgaben dennoch korrigieren.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{VL letzte Woche (VL-Folien/Skript)}
+\begin{itemize}
+\item 3SAT $\leq_p$ HAMILTON-PATH
+\item Fixed parameter tractability
+\item Average case complexity
+\item Impaliazzos Welten
+\item Counting Classes und Probabilistische Klassen:\\
+$\#\P,\mathcal{R},co\mathcal{R},\mathcal{ZPP},\mathcal{PP},\mathcal{BPP}$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Informationstheorie}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rechenregeln für $\log$ und Wahrscheinlichkeiten}
+\begin{itemize}
+\item $\log(a\cdot b)=\log a+\log b$, $\log(a^b)=b\log(a)$, insbesondere $\log\frac{1}{a}=-log(a)$
+\item Hier: $0\cdot\log 0:=0,0\cdot\log \frac{0}{0}=0,a\cdot\log \frac{a}{0}=\infty$ $(a>0)$\pause
+\item Sind $X_1,X_2,\ldots,X_n$ stochastisch unabhängige ZV, so ist\\
+$p(X_1=x_1,X_2=x_2,\ldots,X_n=x_n)=p(X_1=x_1)\cdot p(X_2=x_2)\cdot \ldots\cdot p(X_n=x_n)$
+\item Erwartungswert: $\E(X)=\sum\limits_{x\in X}x\cdot p(x)$\pause
+\item Bedingte Wahrscheinlichkeit: $p(y|x)=\frac{p(x,y)}{p(x)}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Eigenschaften von Information}
+Information $I_p$ für Zeichen der Wahrscheinlichkeit (WK) $p$
+\begin{itemize}
+\item $I_p\geq 0$
+\item $I_1=0$
+\item $I$ ist stetig
+\item Sind zwei Ereignisse mit WK $p_1,p_2$ stochastisch unabhängig, dann $I_{(p_1\cdot p_2)}=I_{p_1}+I_{p_2}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Information, Entropie}
+\begin{itemize}
+\item $I_p:=\log_b\frac{1}{p} [=-\log_b p]$; hier immer $b=2$\pause
+\item Entropie: $H(x)=\sum\limits_{x\in X}p(x)\log\frac{1}{p(x)}=\E I(x)$\pause
+\item Für Basis $b$ gilt: $H_b(X) = \log_b 2 H(X)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gemeinsame und bedingte Entropie}
+\begin{itemize}
+\item Gemeinsame Entropie: $H(X,Y)=\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\log\frac{1}{p(x,y)}$\pause
+\item Bedingte Entropie: $H(Y|X)=\sum\limits_{x\in X}H(Y|X=x)=-\sum\limits_{x\in X}p(x)\sum\limits_{y\in Y}p(y|x)\log(p(y|x))=-\sum\limits_{x\in X,y\in Y}p(x,y)\log(p(y|x))$
+\item[$\Rightarrow$] $H((X,Y)|Z)=H(X|Z)+H(Y|X,Z)$
+\pause
+\item Kettenregel: $H(X,Y)=H(X)+H(Y|X)=H(Y)+H(Y|X)$
+\item  Achtung: Es kann sein dass $H(X|Y)\neq H(Y|X)$!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Datenübertragung}
+Sei ein Kanal gegeben, der ein Symbol von $X$ nach $Y$ überträgt, und evtl. nicht fehlerfrei ist.
+\begin{itemize}
+\item $H(X,Y)$ heißt Totalinformation
+\item $H(X|Y)$ heißt Äquivokation
+\item $H(Y|X)$ heißt Fehlinformation/Irrelevanz\pause
+\item Transinformation: $I(X;Y):=H(X)-H(X|Y)=H(Y)-H(Y|X)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Präfix-freie Codes}
+\begin{itemize}
+\item 
+\end{itemize}
+\end{frame}
+\end{document}
