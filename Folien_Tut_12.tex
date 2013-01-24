@@ -74,11 +74,14 @@ Information $I_p$ für Zeichen der Wahrscheinlichkeit (WK) $p$
 \end{frame}
 
 \begin{frame}
-\frametitle{Information, Entropie}
+\frametitle{Quellen, Information, Entropie}
 \begin{itemize}
-\item $I_p:=\log_b\frac{1}{p} [=-\log_b p]$; hier immer $b=2$\pause
-\item Entropie: $H(x)=\sum\limits_{x\in X}p(x)\log\frac{1}{p(x)}=\E I(x)$\pause
-\item Für Basis $b$ gilt: $H_b(X) = \log_b 2 H(X)$
+\item Eine Quelle sendet Zeichen mit einer gewissen WK aus.\pause
+\item Sie heißt gedächtnislos, falls die WK für ein Zeichen nicht von den vorigen Zeichen abhängt.\pause
+\item $I_p:=\log_b\frac{1}{p} [=-\log_b p]$
+\item Hier immer $b=2$, dadurch Einheit "bit"\pause
+\item Entropie: $H(X)=\sum\limits_{x\in X}p(x)\log\frac{1}{p(x)}=\E I(x)$\pause
+\item Für Basis $b$ gilt: $H_b(X) = \log_b 2\cdot H(X)$
 \end{itemize}
 \end{frame}
 
@@ -87,9 +90,9 @@ Information $I_p$ für Zeichen der Wahrscheinlichkeit (WK) $p$
 \begin{itemize}
 \item Gemeinsame Entropie: $H(X,Y)=\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\log\frac{1}{p(x,y)}$\pause
 \item Bedingte Entropie: $H(Y|X)=\sum\limits_{x\in X}H(Y|X=x)=-\sum\limits_{x\in X}p(x)\sum\limits_{y\in Y}p(y|x)\log(p(y|x))=-\sum\limits_{x\in X,y\in Y}p(x,y)\log(p(y|x))$
-\item[$\Rightarrow$] $H((X,Y)|Z)=H(X|Z)+H(Y|X,Z)$
 \pause
 \item Kettenregel: $H(X,Y)=H(X)+H(Y|X)=H(Y)+H(Y|X)$
+\item[$\Rightarrow$] $H((X,Y)|Z)=H(X|Z)+H(Y|X,Z)$
 \item  Achtung: Es kann sein dass $H(X|Y)\neq H(Y|X)$!
 \end{itemize}
 \end{frame}
@@ -106,9 +109,25 @@ Sei ein Kanal gegeben, der ein Symbol von $X$ nach $Y$ überträgt, und evtl. ni
 \end{frame}
 
 \begin{frame}
-\frametitle{Präfix-freie Codes}
+\frametitle{Präfix Codes}
 \begin{itemize}
-\item 
+\item Sei $Q$ ein Alphabet und $f:Q\to \F$ eine Kodierung.\pause
+\item Achtung: Evtl. ist die Dekodierung nicht eindeutig!\pause
+\item Falls für alle Codewörter $c_1c_2\ldots c_n\in f(Q)$ und für $k<n$ das Wort $c_1c_2\ldots c_k$ kein Codewort ist, so heißt die Kodierung Präfix-Code.
+\item Präfix-Codes sind immer eindeutig.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Die Huffman-Kodierung}
+\begin{itemize}
+\item Die Huffman-Kodierung ist ein für gedächtnislose Quellen optimaler Präfix-Code.
+\vspace{1cm}\pause
+\item Konstruktion: Für jedes Zeichen ein eigener Knoten. Häufigkeit dazuschreiben.\pause
+\item Dann schrittweise einen Baum erstellen:\\
+Zwei (Wurzel-)Knoten aussuchen, dass Summe der Häufigkeiten minimal wird.
+\item Füge dann einen neuen Knoten als Vater dieser beiden Knoten hinzu und schreibe diese Summe dazu.\pause
+\item Am Ende: Wege nach links: 0, nach rechts: 1
 \end{itemize}
 \end{frame}
 \end{document}
