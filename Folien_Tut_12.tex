@@ -81,7 +81,8 @@ Information $I_p$ für Zeichen der Wahrscheinlichkeit (WK) $p$
 \item $I_p:=\log_b\frac{1}{p} [=-\log_b p]$
 \item Hier immer $b=2$, dadurch Einheit "bit"\pause
 \item Entropie: $H(X)=\sum\limits_{x\in X}p(x)\log\frac{1}{p(x)}=\E I(x)$\pause
-\item Für Basis $b$ gilt: $H_b(X) = \log_b 2\cdot H(X)$
+\item Für Basis $b$ gilt: $H_b(X) = \log_b 2\cdot H(X)$\pause
+\item maximale Entropie bei $n$ Zeichen: $\log n$; genau dann wenn alle Zeichen gleich wahrscheinlich sind (WK $\frac{1}{n}$)
 \end{itemize}
 \end{frame}
 
@@ -91,7 +92,7 @@ Information $I_p$ für Zeichen der Wahrscheinlichkeit (WK) $p$
 \item Gemeinsame Entropie: $H(X,Y)=\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\log\frac{1}{p(x,y)}$\pause
 \item Bedingte Entropie: $H(Y|X)=\sum\limits_{x\in X}H(Y|X=x)=-\sum\limits_{x\in X}p(x)\sum\limits_{y\in Y}p(y|x)\log(p(y|x))=-\sum\limits_{x\in X,y\in Y}p(x,y)\log(p(y|x))$
 \pause
-\item Kettenregel: $H(X,Y)=H(X)+H(Y|X)=H(Y)+H(Y|X)$
+\item Kettenregel: $H(X,Y)=H(X)+H(Y|X)=H(Y)+H(X|Y)$
 \item[$\Rightarrow$] $H((X,Y)|Z)=H(X|Z)+H(Y|X,Z)$
 \item  Achtung: Es kann sein dass $H(X|Y)\neq H(Y|X)$!
 \end{itemize}
