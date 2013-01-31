@@ -1,0 +1,134 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\usetheme[deutsch]{KIT}
+\author{Simon Bischof (simon.bischof2@student.kit.edu)}
+\title{Tutorium Theoretische Grundlagen der Informatik}
+\subtitle{Simon Bischof}
+\institute{Institut f\"{u}r Kryptographie und Sicherheit}
+\TitleImage[scale=0.7]{tmaschine.png}
+
+\newcommand{\F}{\ensuremath \mathbb{F}}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+\newcommand{\E}{\ensuremath \mathbb{E}}
+\renewcommand{\P}{\ensuremath \mathcal{P}}
+\newcommand{\NP}{\ensuremath \mathcal{NP}}
+\newcommand{\NPC}{\ensuremath \mathcal{NP-C}}
+
+\begin{document}
+\shorthandoff{"}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Organisatorisches}
+\begin{itemize}
+\item ÜB7: Abgabe am 1.2., 12:00 Uhr; Abholung ab 8.2. (im Tut oder danach bei den Übungsleitern) 
+\item Hauptklausur: 22.02., 8:00 Uhr
+\item Anmeldung ab sofort bis 15.2.
+\item Nachklausur: 10.04., 11:30 Uhr
+\item Klausur geht 60 min
+\item Es gibt 60 Punkte, 20 sind zum Bestehen hinreichend
+\item Keine Hilfsmittel erlaubt
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Präfix Codes}
+\begin{itemize}
+\item Sei $Q$ ein Alphabet und $f:Q\to \{0,1\}^*$ eine Kodierung.\pause
+\item Achtung: Evtl. ist die Dekodierung nicht eindeutig!\pause
+\item Falls für alle Codewörter $c_1c_2\ldots c_n\in f(Q)$ und für $k<n$ das Wort $c_1c_2\ldots c_k$ kein Codewort ist, so heißt die Kodierung Präfix-Code.
+\item Präfix-Codes sind immer eindeutig.\pause
+\item Für einen Präfixcode gilt: Die mittlere Codewortlänge ist größer oder gleich der Entropie der Quelle
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Shannon-Fano}
+\begin{itemize}
+\item Shannon-Fano konstruiert einen (nicht immer optimalen) Präfix-Code.
+\vspace{1cm}\pause
+\item Sortiere die vorkommenden Symbole nach ihrer Häufigkeit.\pause
+\item Bestimme nun den Punkt, an dem die Reihe aus Symbolen aufgeteilt
+werden muss, so dass die aufsummierten Wahrscheinlichkeiten der beiden
+entstehenden Gruppen möglichst gleich sind.\pause
+\item Hänge nun die beiden entstehenden Gruppen als Blätter an eine neue
+Wurzel.\pause
+\item Verfahre nun rekursiv: Ersetze die Gruppen jeweils durch den Baum der
+beim Anwenden des Verfahrens auf sie jeweils entsteht, solange, bis alle
+Blätter einzelne Symbole sind.\pause
+\item Am Ende: Wege nach links: 0, nach rechts: 1
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kanalkodierungen}
+\begin{itemize}
+\item Daten werden über einen Kanal geschickt\pause
+\item Kanal verändert (zufällig) einzelne Bits\pause
+\item Wie sichere ich die Daten?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Grundlagen}
+\begin{itemize}
+\item Hammingdistanz für $x,y \in \{0,1\}^n$: $d(x,y):=\sum\limits_{i=1}^n  (1-\delta_{x_i,y_i})=\#\{i=1,\ldots,n|x_i\neq y_i\}$\pause
+\item Hammingkugel um $x$ mit Radius $\varrho$: $B_\varrho(x):=\{y\in\{0,1\}^n|d(x,y)\leq \varrho\}$\pause
+\item Maximum-Likelyhood-Decoding: Dekodiere empfangenes Wort $y$ als Codewort $x$ mit $d(x,y)$ minimal.\pause
+\item Rate für Code mit $M$ Wörtern der Länge $n$: $R=\frac{\log_2 M}{n}$\pause
+\item Mit Maximum-Likelyhood-Decoding werde gesendetes $x_i$ mit WK $P_i$ falsch dekodiert. Wahrscheinlichkeit für falsche Dekodierung: $P_C=\frac{1}{M}\sum\limits_{i=1}^M P_i$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kanalkodierungen}
+Hier gibt es vor allem zwei Möglichkeiten:\pause
+\begin{itemize}
+\item Block-Codes: Codeworte gleicher Länge, unabhängige Kodierung von aufeinanderfolgenden Blöcken
+\item Faltungs-Codes: Codeworte evtl. beliebig lang, Kodierung abhängig vom Vorgeschehen\pause
+\end{itemize}
+In der VL: Nur Block-Codes
+\end{frame}
+
+\begin{frame}
+\frametitle{Eigenschaften von Block-Codes}
+\begin{itemize}
+\item Code immer über endl. Alphabet $Q$. Oft: $Q=\{0,1\}$.
+\item Der Block-Code ist eine Teilmenge $C\subseteq Q^n$ für festes $n\in\N$.
+\item Code heißt für $\#Q=1$ trivial (nur ein Codewort!), $\#Q=2$ binär, $\#Q=3$ terniär, \ldots\pause
+\item Minimaldistanz $m(C):=\min\limits_{c_1,c_2\in C,c_1\neq c_2} d(c_1,c_2)$
+\item Rate $R(C):=\frac{\log(\#C)}{\log(\#Q^n)}=\frac{\log(\#C)}{n\cdot\log(\#Q)}$
+\item Ein Code $C$ mit $m(C)$ ungerade heißt perfekt, falls für alle $y\in Q^n$ genau ein $x\in C$ existiert mit $d(x,y)\leq \frac{m(C)-1}{2}$\pause
+\item Ein Block-Code $C$ kann entweder bis zu $m(C)-1$ Fehler erkennen oder bis zu $\lfloor\frac{m(C)-1}{2}\rfloor$ Fehler korrigieren.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lineare Codes}
+Normalerweise: Beliebiger endlicher Körper $\F_q$. Hier immer: $\F=\F_2=\{0,1\}$.
+\begin{itemize}
+\item Ein linearer $[n,k]$-Block-Code $C$ ist ein Untervektorraum von $\F$ der Dimension $k$.\pause
+\item Hamming-Gewicht: $wgt(x):=d(x,0)$. Es ist außerdem $d(x,y)=wgt(x-y)$.\pause
+\item Beschreibe $C$ als Kern einer $\F^{(n-k)\times n}$-Matrix (Parity-Check- oder Prüf-Matrix): $C=Kern(H)=\{x\in\F^n|Hx=0\}$
+\item \ldots oder als Bild einer $\F^{n\times k}$-Matrix (Generatormatrix): $C=Bild(G)=\{Gx|x\in\F^k\}$.\pause
+\item $s=Hx$ heißt das Fehlersyndrom von $x\in\F^n$.\pause
+\item Für gegebenes $s$ heißt (falls eindeutig) das $e\in\F^n$ mit
+$wgt(e) = min\{wgt(x)|x \in \F^n\setminus\{0\}, Hx=s\}$ der Coset-Leader von $s$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hamming-Codes}
+\begin{itemize}
+\item Hamming-Codes sind $[2^k - 1, 2^k - k - 1]$-Codes, für die je
+zwei Spalten der Prüfmatrix linear unabhängig sind.\pause
+\item Es gilt $R(C)=\frac{2^k-k-1}{2^k-1}=1-\frac{k}{2^k-1}$ und $m(C)=3$.
+\item Hamming-Codes sind perfekt.
+\end{itemize}
+\end{frame}
+\end{document}
